@@ -1,10 +1,9 @@
-import React from "react";
 import { Box, Typography } from "@mui/material";
 
 const Header = () => {
     return(
-        <Box>
-            <Typography variant="h5">Where in the world?</Typography>
+        <Box sx={{padding: '20px 0px'}}>
+            <Typography fontWeight={"bold"} variant="h5">Where in the world?</Typography>
         </Box>
     )
 }
