@@ -22,8 +22,8 @@ const Countries = () => {
         setRegion(event.target.value);
       };
 
-    return(
-        <Box sx={{marginTop: '50px'}}>
+    return( 
+        <Box sx={{marginTop: '50px'}}> 
             <TextField sx={{width: '480px', "& fieldset": {border: 'none'}, backgroundColor: 'white'}} label="Search for country..." id="searchCountries"
                 InputProps={{endAdornment: (<InputAdornment position="start"><SearchIcon /></InputAdornment>)}} 
                 margin="normal"
