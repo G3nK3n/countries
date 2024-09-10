@@ -1,3 +1,4 @@
+import React from "react";
 import { Box } from "@mui/material"
 import TextField from "@mui/material/TextField"
 import SearchIcon from '@mui/icons-material/Search';
@@ -10,23 +11,28 @@ import Select, { SelectChangeEvent } from '@mui/material/Select';
 
 // Temporary until backend
 import countryAPI from '../../../data.json';
-import React from "react";
 
-import Country from "./CountriesLayout";
+
+import CountriesLayout from "./CountriesLayout";
 
 const Countries = () => {
 
     const [region, setRegion] = React.useState('')
+    const [searchCountry, setSearchCountry] = React.useState<String>('')
 
     const handleChange = (event: SelectChangeEvent) => {
         setRegion(event.target.value);
-      };
+    };
+    
+    const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
+        setSearchCountry(e.target.value);
+    };
 
     return( 
         <Box sx={{marginTop: '50px'}}> 
-            <TextField sx={{width: '480px', "& fieldset": {border: 'none'}, backgroundColor: 'white'}} label="Search for country..." id="searchCountries"
+            <TextField onChange={handleSearch} sx={{width: '480px', "& fieldset": {border: 'none'}, backgroundColor: 'white'}} label="Search for country..." id="searchCountries"
                 InputProps={{endAdornment: (<InputAdornment position="start"><SearchIcon /></InputAdornment>)}} 
-                margin="normal"
+                margin="normal" 
             /> 
             <FormControl variant="standard" sx={{ m: 1, minWidth: 200, float: 'right', marginBottom: '5px !important'}}>
                 <InputLabel id="demo-simple-select-standard-label">Filter by Region</InputLabel>  
@@ -49,7 +55,7 @@ const Countries = () => {
                 </Select>
             </FormControl>
             <Box>
-                <Country />
+                <CountriesLayout searchResult={searchCountry}/>
             </Box>
         </Box>
 
