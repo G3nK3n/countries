@@ -12,6 +12,7 @@ const CountriesLayout = (props: any) => {
             {filtered.map((country, index) => {   
                 return(
                     <Country key={index}
+                        index={index}
                         countryImage={country.flag} 
                         name={country.name} 
                         population={country.population} 
