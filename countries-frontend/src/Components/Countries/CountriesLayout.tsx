@@ -1,27 +1,24 @@
-import React from "react";
 import Country from './Country'
 import countryAPI from '../../../data.json';
 
 import { Box } from "@mui/material"
 
 const CountriesLayout = (props: any) => {
+    
+    const filtered = countryAPI.filter((countries) => String(countries.name).toLowerCase().includes(String(props.searchResult).toLowerCase()))
+     
     return(
         <Box sx={{marginTop: '30px'}}>
-            {countryAPI.map((country, index) => {
-                //FIX THIS
-                if(String(props.searchResult) === String(country.name)) {
-                    console.log("Result: ", props.searchResult)
-                    return(
-                        <Country key={index}
-                            countryImage={country.flag} 
-                            name={country.name} 
-                            population={country.population} 
-                            region={country.region}
-                            capital={country.capital}
-                        />
-                    )
-                }
-                
+            {filtered.map((country, index) => {   
+                return(
+                    <Country key={index}
+                        countryImage={country.flag} 
+                        name={country.name} 
+                        population={country.population} 
+                        region={country.region}
+                        capital={country.capital}
+                    />
+                )
             })}
         </Box>
     )

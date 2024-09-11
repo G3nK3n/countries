@@ -9,10 +9,6 @@ import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select, { SelectChangeEvent } from '@mui/material/Select';
 
-// Temporary until backend
-import countryAPI from '../../../data.json';
-
-
 import CountriesLayout from "./CountriesLayout";
 
 const Countries = () => {
@@ -24,7 +20,7 @@ const Countries = () => {
         setRegion(event.target.value);
     };
     
-    const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const handleSearch = (e: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>) => {
         setSearchCountry(e.target.value);
     };
 
