@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useCallback } from "react";
 import { Box, Typography } from "@mui/material"
 
 const Country = (props: any) => {
@@ -8,6 +8,12 @@ const Country = (props: any) => {
         height: '160px'
     };
 
+    const convertPopulationNumber = useCallback(() => {
+        const num = props.population;
+        return Intl.NumberFormat("en-US").format(num)
+    }, [props.population])
+
+
     //Returns a country component with a right margin for the first 4 countries in each row, 
     //while the 5th country on the row does not
     if((props.index + 1) % 5 !== 0) {
@@ -16,11 +22,14 @@ const Country = (props: any) => {
                 <Box sx={{width: '264px', height: '160px'}}>
                     <img style={imageWidthStyle} src={props.countryImage} />
                 </Box>
-                <h3>{props.name}</h3>
-                <Box>
-                    <p>Population: {props.population}</p>
-                    <p>Region: {props.region}</p>
-                    <p>Capital: {props.capital}</p>
+                
+                <Box sx={{marginTop: '20px', marginLeft: '25px', marginRight: '10px'}}> 
+                    <Typography sx={{fontFamily: 'Nunito', fontSize: '18px', fontWeight: 'bold'}} variant="h5"><b>{props.name}</b></Typography>
+                    <Box sx={{marginTop: '10px'}}>
+                        <Typography sx={{fontFamily: 'Nunito', fontSize: '14px', marginBottom: '2px'}} paragraph={true}><b>Population:</b> {convertPopulationNumber()}</Typography>
+                        <Typography sx={{fontFamily: 'Nunito', fontSize: '14px', marginBottom: '2px'}} paragraph={true}><b>Region:</b> {props.region}</Typography>
+                        <Typography sx={{fontFamily: 'Nunito', fontSize: '14px', marginBottom: '2px'}} paragraph={true}><b>Capital:</b> {props.capital}</Typography>
+                    </Box>
                 </Box>
                 
             </Box>
@@ -32,13 +41,15 @@ const Country = (props: any) => {
                 <Box sx={{width: '264px', height: '160px'}}>
                     <img style={imageWidthStyle} src={props.countryImage} />
                 </Box>
-                <h3>{props.name}</h3>
-                <Box>
-                    <p>Population: {props.population}</p>
-                    <p>Region: {props.region}</p>
-                    <p>Capital: {props.capital}</p>
-                </Box>
                 
+                <Box sx={{marginTop: '20px', marginLeft: '25px', marginRight: '10px'}}> 
+                    <Typography sx={{fontFamily: 'Nunito', fontSize: '18px', fontWeight: 'bold'}} variant="h5"><b>{props.name}</b></Typography>
+                    <Box sx={{marginTop: '10px'}}>
+                        <Typography sx={{fontFamily: 'Nunito', fontSize: '14px', marginBottom: '2px'}} paragraph={true}><b>Population:</b> {convertPopulationNumber()}</Typography>
+                        <Typography sx={{fontFamily: 'Nunito', fontSize: '14px', marginBottom: '2px'}} paragraph={true}><b>Region:</b> {props.region}</Typography>
+                        <Typography sx={{fontFamily: 'Nunito', fontSize: '14px', marginBottom: '2px'}} paragraph={true}><b>Capital:</b> {props.capital}</Typography>
+                    </Box>
+                </Box>
             </Box>
         )
     }

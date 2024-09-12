@@ -5,8 +5,18 @@ import { Box } from "@mui/material"
 
 const CountriesLayout = (props: any) => {
     
-    const filtered = countryAPI.filter((countries) => String(countries.name).toLowerCase().includes(String(props.searchResult).toLowerCase()))
-     
+    const regionResult = props.regionResult;
+    let filtered;
+
+    if(regionResult === '') {
+        filtered = countryAPI.filter((countries) => String(countries.name).toLowerCase().includes(String(props.searchResult).toLowerCase()))
+    }
+    else {
+        filtered = countryAPI.filter((countries) => String(countries.name).toLowerCase().includes(String(props.searchResult).toLowerCase()) && countries.region === regionResult)
+    }
+
+    
+    
     return(
         <Box sx={{marginTop: '30px'}}>
             {filtered.map((country, index) => {   
