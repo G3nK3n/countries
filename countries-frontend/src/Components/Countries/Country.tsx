@@ -1,5 +1,7 @@
 import React, { useCallback } from "react";
 import { Box, Typography } from "@mui/material"
+import { Link } from "react-router-dom";
+import '../../index.css'
 
 const Country = (props: any) => {
     
@@ -24,7 +26,9 @@ const Country = (props: any) => {
                 </Box>
                 
                 <Box sx={{marginTop: '20px', marginLeft: '25px', marginRight: '10px'}}> 
-                    <Typography sx={{fontFamily: 'Nunito', fontSize: '18px', fontWeight: 'bold'}} variant="h5"><b>{props.name}</b></Typography>
+                    <Link className={"link-style-country-name"} to={`/${props.name}`}>
+                        <Typography sx={{fontFamily: 'Nunito', fontSize: '18px', fontWeight: 'bold'}} variant="h5"><b>{props.name}</b></Typography>
+                    </Link>
                     <Box sx={{marginTop: '10px'}}>
                         <Typography sx={{fontFamily: 'Nunito', fontSize: '14px', marginBottom: '2px'}} paragraph={true}><b>Population:</b> {convertPopulationNumber()}</Typography>
                         <Typography sx={{fontFamily: 'Nunito', fontSize: '14px', marginBottom: '2px'}} paragraph={true}><b>Region:</b> {props.region}</Typography>
