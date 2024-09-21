@@ -62,8 +62,8 @@ const CountryDetails = () => {
     return(
         <Box>
             <Box>
-                <Box sx={{marginTop: '70px'}}>
-                    <Button variant="text" onClick={() => navigate(-1)}>Back</Button>
+                <Box sx={{marginTop: '70px', width: '85px', textAlign: 'center', cursor: 'pointer', boxShadow: '2'}} onClick={() => navigate(-1)}>
+                    <Typography sx={{fontFamily: 'Nunito', fontSize: '14px'}} paragraph={true}>&#8592; Back</Typography> 
                 </Box>
                 <Stack direction={"row"} sx={{marginTop: '70px'}} >
                     <Box sx={{display: 'inline-block'}}> 
