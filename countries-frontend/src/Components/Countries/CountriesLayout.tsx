@@ -1,33 +1,31 @@
 import Country from './Country'
-import countryAPI from '../../../data.json';
 
 import { Box } from "@mui/material"
 
 const CountriesLayout = (props: any) => {
-    
+
     const regionResult = props.regionResult;
     let filtered;
 
     if(regionResult === '') {
-        filtered = countryAPI.filter((countries) => String(countries.name).toLowerCase().includes(String(props.searchResult).toLowerCase()))
+        filtered = props.data.filter((countries: any) => String(countries.name.common).toLowerCase().includes(String(props.searchResult).toLowerCase()))
     }
     else {
-        filtered = countryAPI.filter((countries) => String(countries.name).toLowerCase().includes(String(props.searchResult).toLowerCase()) && countries.region === regionResult)
+        filtered = props.data.filter((countries: any) => String(countries.name.common).toLowerCase().includes(String(props.searchResult).toLowerCase()) && countries.region === regionResult)
     }
 
-    
-    
+
     return(
         <Box sx={{marginTop: '30px'}}>
-            {filtered.map((country, index) => {   
+            {filtered.map((country: any, index: number) => {   
                 return(
                     <Country key={index}
                         index={index}
-                        countryImage={country.flag} 
-                        name={country.name} 
+                        countryImage={country.flags.png} 
+                        name={country.name.common} 
                         population={country.population} 
                         region={country.region}
-                        capital={country.capital}
+                        capital={country.capital} 
                     />
                 )
             })}

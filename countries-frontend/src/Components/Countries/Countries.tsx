@@ -11,7 +11,7 @@ import Select, { SelectChangeEvent } from '@mui/material/Select';
 
 import CountriesLayout from "./CountriesLayout";
 
-const Countries = () => {
+const Countries = (props: any) => {
 
     const [region, setRegion] = React.useState<string>('')
     const [searchCountry, setSearchCountry] = React.useState<String>('')
@@ -51,7 +51,7 @@ const Countries = () => {
                 </Select>
             </FormControl>
             <Box>
-                <CountriesLayout regionResult={region} searchResult={searchCountry}/>
+                <CountriesLayout data={props.data} regionResult={region} searchResult={searchCountry}/>
             </Box>
         </Box>
 
