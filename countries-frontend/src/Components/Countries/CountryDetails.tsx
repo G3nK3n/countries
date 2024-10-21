@@ -22,12 +22,13 @@ const CountryDetails = (props: any) => {
     const borderCountryBox = {
         width: '96px',
         heigth: '28px', 
-        background: 'white',
+        backgroundColor: 'white',
         display: 'inline-block',
         textAlign: 'center',
         marginLeft: '5px',
         marginBottom: '10px',
-        boxShadow: '3'
+        boxShadow: '3',
+        color: 'text.secondary'
     }
 
     useEffect(() => {
@@ -37,17 +38,20 @@ const CountryDetails = (props: any) => {
     
     const getAllLanguages = () => {
         let allLanguages: string = "";
-        let languageLength: number = specificCountry?.languages?.length
 
-        specificCountry?.languages?.map((language: any, index: number) => {
-            //This just checks if its the last language of the country to remove the comma
-            if(index !== languageLength-1) {
-                allLanguages += language.name + ", "
-            }
-            else if(index === languageLength-1){
-                allLanguages += language.name
-            }
-        }) 
+        if(specificCountry?.languages) {
+            Object.keys(specificCountry?.languages).forEach((key, index: number) => {
+                
+                if(index+1 !== Object.keys(specificCountry?.languages).length) {
+                    allLanguages += specificCountry?.languages[key] + ", "
+                }
+                else if(index+1 === Object.keys(specificCountry?.languages).length){
+                    allLanguages += specificCountry?.languages[key]
+                }
+            })
+        }
+        
+         
         return allLanguages
     }
 
@@ -61,39 +65,52 @@ const CountryDetails = (props: any) => {
         return getCountryName?.name.common; 
     }, [specificCountry?.borders, specificCountry])
 
+    const getCurrencies = useCallback(() => {
+        
+        let currencyName: string = ""
+
+        if(specificCountry?.languages) {
+            Object.keys(specificCountry?.currencies).forEach((key) => {
+                currencyName = specificCountry?.currencies[key].name
+            })
+        }
+
+        return currencyName;
+    }, [specificCountry?.currencies])
+
     console.log(specificCountry)
 
     return(
         <Box>
             <Box>
-                <Box sx={{marginTop: '70px', width: '85px', textAlign: 'center', cursor: 'pointer', boxShadow: '2'}} onClick={() => navigate(-1)}>
-                    <Typography sx={{fontFamily: 'Nunito', fontSize: '14px'}} paragraph={true}>&#8592; Back</Typography> 
+                <Box sx={{marginTop: '70px', width: '136px', textAlign: 'center', cursor: 'pointer', boxShadow: '2', backgroundColor: 'background.secondary', padding: '8px 0', borderRadius: '7px'}} onClick={() => navigate(-1)}>
+                    <Typography sx={{fontFamily: 'Nunito', fontSize: '14px', marginBottom: '0px'}} paragraph={true}>&#8592; Back</Typography> 
                 </Box>
                 <Stack direction={"row"} sx={{marginTop: '70px'}} >
                     <Box sx={{display: 'inline-block'}}> 
                         <img style={imageWidthStyle} src={specificCountry?.flags?.svg} />
                     </Box>
-                    <Box sx={{display: 'inline-block', marginLeft: '60px', width: '598px', height: '323px', marginTop: '40px'}}> 
+                    <Box sx={{display: 'inline-block', marginLeft: '200px', width: '598px', height: '323px', marginTop: '40px'}}> 
                         
                         
                         <Typography sx={{fontFamily: 'Nunito', fontSize: '32px', fontWeight: 'bold'}} variant="h1"><b>{specificCountry?.name?.common}</b></Typography>
                          
                         <Stack direction={"row"} spacing={2} sx={{marginTop: '30px'}}>   
-                            {/*
+                            
                             <Box sx={{display: 'inline-block'}}>
-                                
-                                <Typography sx={{fontFamily: 'Nunito', fontSize: '16px', marginBottom: '2px'}} paragraph={true}><b>Native Name:</b> {specificCountry?.nativeName}</Typography>
+                                <Typography sx={{fontFamily: 'Nunito', fontSize: '16px', marginBottom: '2px'}} paragraph={true}><b>Native Name:</b> {specificCountry?.name?.common}</Typography>
                                 <Typography sx={{fontFamily: 'Nunito', fontSize: '16px', marginBottom: '2px'}} paragraph={true}><b>Population:</b> {convertPopulationNumber()}</Typography>
                                 <Typography sx={{fontFamily: 'Nunito', fontSize: '16px', marginBottom: '2px'}} paragraph={true}><b>Region:</b> {specificCountry?.region}</Typography>
                                 <Typography sx={{fontFamily: 'Nunito', fontSize: '16px', marginBottom: '2px'}} paragraph={true}><b>Sub Region:</b> {specificCountry?.subregion}</Typography>
                                 <Typography sx={{fontFamily: 'Nunito', fontSize: '16px', marginBottom: '2px'}} paragraph={true}><b>Capital:</b> {specificCountry?.capital}</Typography>
                             </Box>
+                            
                             <Box sx={{display: 'inline-block', marginLeft: '160px !important'}}> 
-                                <Typography sx={{fontFamily: 'Nunito', fontSize: '16px', marginBottom: '2px'}} paragraph={true}><b>Top Level Domain:</b> {specificCountry?.topLevelDomain}</Typography>
-                                <Typography sx={{fontFamily: 'Nunito', fontSize: '16px', marginBottom: '2px'}} paragraph={true}><b>Currency:</b> {specificCountry?.currencies?.shp.map((currency: any) => currency.name)}</Typography>
+                                <Typography sx={{fontFamily: 'Nunito', fontSize: '16px', marginBottom: '2px'}} paragraph={true}><b>Top Level Domain:</b> {specificCountry?.tld}</Typography>
+                                <Typography sx={{fontFamily: 'Nunito', fontSize: '16px', marginBottom: '2px'}} paragraph={true}><b>Currency:</b> {getCurrencies()}</Typography>
                                 <Typography sx={{fontFamily: 'Nunito', fontSize: '16px', marginBottom: '2px'}} paragraph={true}><b>Languages:</b> {getAllLanguages()}</Typography> 
                             </Box>
-                            */}
+                            
                         </Stack>  
                         <Box sx={{marginTop: '60px'}}>  
                             <Typography sx={{fontFamily: 'Nunito', fontSize: '14px', marginBottom: '2px'}} paragraph={true}><b>Borders:</b> {specificCountry?.borders?.length !== undefined ? specificCountry?.borders?.map((country: any, index: number) => <Box key={index} sx={borderCountryBox}><Link reloadDocument className={"link-style-country-name"} to={`/${getCountryBorderNames(country)}`}>{getCountryBorderNames(country)}</Link></Box>) : "None"}</Typography> 

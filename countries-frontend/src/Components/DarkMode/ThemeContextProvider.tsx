@@ -1,44 +1,26 @@
-import {
-    StyledEngineProvider,
-    ThemeProvider,
-    createTheme,
-  } from "@mui/material/styles";
-  import { ReactNode, createContext, useMemo, useState } from "react";
-  
-  type ThemeContextType = {
-    switchColorMode: () => void;
-  };
-  
-  type ThemeProviderProps = {
-    children: ReactNode;
-  };
-  
-  export const ThemeContext = createContext<ThemeContextType>({
-    switchColorMode: () => {},
-  });
-  
-  export function ThemeContextProvider({ children }: ThemeProviderProps) {
-    const [mode, setMode] = useState<"light" | "dark">("light");
-  
-    const switchColorMode = () => {
-      setMode((prevMode) => (prevMode === "light" ? "dark" : "light"));
-    };
-  
-    const theme = useMemo(
-      () =>
-        createTheme({
-          palette: {
-            mode,
-          },
-        }),
-      [mode]
-    );
-  
-    return (
-      <StyledEngineProvider injectFirst>
-        <ThemeContext.Provider value={{ switchColorMode }}>
-          <ThemeProvider theme={theme}>{children}</ThemeProvider>
-        </ThemeContext.Provider>
-      </StyledEngineProvider>
-    );
-  }
+import { createTheme, Theme } from "@mui/material";
+import { createContext, FC, PropsWithChildren, useContext } from "react";
+import { useColorTheme } from "./use-color-theme";
+
+type ThemeContextType = {
+  mode: string;
+  toggleColorMode: () => void;
+  theme: Theme;
+};
+
+export const ThemeContext = createContext<ThemeContextType>({
+  mode: "light",
+  toggleColorMode: () => {},
+  theme: createTheme(),
+});
+
+export const ThemeContextProvider: FC<PropsWithChildren> = ({ children }) => {
+  const value = useColorTheme();
+  return (
+    <ThemeContext.Provider value={value}>{children}</ThemeContext.Provider>
+  );
+};
+
+export const useThemeContext = () => {
+  return useContext(ThemeContext);
+};

@@ -20,14 +20,14 @@ const Country = (props: any) => {
     //while the 5th country on the row does not
     if((props.index + 1) % 5 !== 0) {
         return(
-            <Box sx={{width: '264px', height: '336px', display: 'inline-block', backgroundColor: 'white', marginRight: '40px', marginTop: '50px'}}> 
+            <Box sx={{width: '264px', height: '336px', display: 'inline-block', backgroundColor: 'background.secondary', marginRight: '40px', marginTop: '50px'}}> 
                 <Box sx={{width: '264px', height: '160px'}}>
                     <img style={imageWidthStyle} src={props.countryImage} />
                 </Box>
                 
                 <Box sx={{marginTop: '20px', marginLeft: '25px', marginRight: '10px'}}> 
                     <Link className={"link-style-country-name"} to={`/${props.name}`}>
-                        <Typography sx={{fontFamily: 'Nunito', fontSize: '18px', fontWeight: 'bold'}} variant="h5"><b>{props.name}</b></Typography>
+                        <Typography sx={{fontFamily: 'Nunito', fontSize: '18px', fontWeight: 'bold', color: "text.primary"}} variant="h5"><b>{props.name}</b></Typography>
                     </Link>
                     <Box sx={{marginTop: '10px'}}>
                         <Typography sx={{fontFamily: 'Nunito', fontSize: '14px', marginBottom: '2px'}} paragraph={true}><b>Population:</b> {convertPopulationNumber()}</Typography>
@@ -41,14 +41,14 @@ const Country = (props: any) => {
     }
     else {
         return(
-            <Box sx={{width: '264px', height: '336px', display: 'inline-block', backgroundColor: 'white', marginTop: '50px'}}> 
+            <Box sx={{width: '264px', height: '336px', display: 'inline-block', backgroundColor: 'background.secondary', marginTop: '50px'}}> 
                 <Box sx={{width: '264px', height: '160px'}}>
                     <img style={imageWidthStyle} src={props.countryImage} />
                 </Box>
                 
                 <Box sx={{marginTop: '20px', marginLeft: '25px', marginRight: '10px'}}> 
                     <Link className={"link-style-country-name"} to={`/${props.name}`}>
-                        <Typography sx={{fontFamily: 'Nunito', fontSize: '18px', fontWeight: 'bold'}} variant="h5"><b>{props.name}</b></Typography>
+                        <Typography sx={{fontFamily: 'Nunito', fontSize: '18px', fontWeight: 'bold', color: "text.primary"}} variant="h5"><b>{props.name}</b></Typography>
                     </Link>
                     <Box sx={{marginTop: '10px'}}>
                         <Typography sx={{fontFamily: 'Nunito', fontSize: '14px', marginBottom: '2px'}} paragraph={true}><b>Population:</b> {convertPopulationNumber()}</Typography>

@@ -34,19 +34,17 @@ const Layout = () => {
         getRequest();
     }, [])
 
-    //
-    //console.log(data[0]?.currencies)
 
     return(
         <Box>
-            <Box sx={{backgroundColor: 'white', top: 0}}> 
+            <Box sx={{backgroundColor: 'background.secondary', top: 0}}> 
                 <Container maxWidth="xl">
                     <Header />
                 </Container>
             </Box>
         
             <Routes>
-                <Route path="/" element={<Box><Container maxWidth="xl"><Countries data={data} /></Container></Box>}></Route>
+                <Route path="/" element={<Box ><Container maxWidth="xl"><Countries data={data} /></Container></Box>}></Route>
                 <Route path="/:countryName" element={<Container maxWidth="xl"><CountryDetails data={data} /></Container>}></Route>
             </Routes>
         </Box>
