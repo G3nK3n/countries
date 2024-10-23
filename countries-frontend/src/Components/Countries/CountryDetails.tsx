@@ -8,7 +8,6 @@ import { useTheme } from "@mui/material/styles";
 
 const CountryDetails = (props: any) => {
     
-    //Any for now until I make model for countries
     const [specificCountry, setSpecificCountry] = React.useState<any>({})
     const {countryName} = useParams(); //Get country name in parameters
 
@@ -18,7 +17,6 @@ const CountryDetails = (props: any) => {
     const matchesSm = useMediaQuery(theme.breakpoints.only("sm")); // 600
     const matchesMd = useMediaQuery(theme.breakpoints.only("md")); // 900
     const matchesLg = useMediaQuery(theme.breakpoints.only("lg")); // 1200
-    const matchesXl = useMediaQuery(theme.breakpoints.only("xl")); // 1536
     
     //In fullstack, keep track of history when clicking back button
     let navigate = useNavigate();
@@ -28,7 +26,13 @@ const CountryDetails = (props: any) => {
             return '400px'
         }
         else if(matchesSm){
-            return '500px';
+            return '500px'
+        }
+        else if(matchesMd) {
+            return '400px'
+        }
+        else if(matchesLg) {
+            return '560px'
         }
     }
 
@@ -108,7 +112,7 @@ const CountryDetails = (props: any) => {
                 </Box>
                 
                 <Stack direction={(matchesXs || matchesSm) ? "column" : "row"} sx={{marginTop: {xs: '0px', xl: '70px'}}} >
-                    <Box sx={{display: 'inline-block', textAlign: {xs: 'center'}}}> 
+                    <Box sx={{display: 'inline-block', textAlign: {xs: 'center'}, marginTop: {md: '43px'}}}> 
                         <img style={imageWidthStyle} src={specificCountry?.flags?.svg} />
                     </Box>
                     <Box sx={{display: 'inline-block', marginLeft: {xs: '80px', sm: '107px', xl: '200px'}, width: {xs: '74%', xl: '598px'}, height: '323px', marginTop: '40px'}}> 
@@ -126,7 +130,7 @@ const CountryDetails = (props: any) => {
                                 <Typography sx={{fontFamily: 'Nunito', fontSize: '16px', marginBottom: '2px', marginTop: {xs: '10px'}}} paragraph={true}><b>Capital:</b> {specificCountry?.capital}</Typography>
                             </Box>
                             
-                            <Box sx={{display: 'inline-block', marginLeft: {sm: '0px', xl: '160px !important'}, marginTop: {xs: '50px !important'}}}> 
+                            <Box sx={{display: 'inline-block', marginLeft: {sm: '0px', lg: '160px !important', xl: '160px !important'}, marginTop: {xs: '50px !important', md: '0px !important'}}}> 
                                 <Typography sx={{fontFamily: 'Nunito', fontSize: '16px', marginBottom: '2px'}} paragraph={true}><b>Top Level Domain:</b> {specificCountry?.tld}</Typography>
                                 <Typography sx={{fontFamily: 'Nunito', fontSize: '16px', marginBottom: '2px', marginTop: {xs: '10px'}}} paragraph={true}><b>Currency:</b> {getCurrencies()}</Typography>
                                 <Typography sx={{fontFamily: 'Nunito', fontSize: '16px', marginBottom: '2px', marginTop: {xs: '10px'}}} paragraph={true}><b>Languages:</b> {getAllLanguages()}</Typography> 
