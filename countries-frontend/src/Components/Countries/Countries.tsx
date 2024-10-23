@@ -25,12 +25,12 @@ const Countries = (props: any) => {
     };
 
     return( 
-        <Box sx={{marginTop: '50px', backgroundColor: "background.default"}}> 
-            <TextField onChange={handleSearch} sx={{width: '480px', "& fieldset": {border: 'none'}, backgroundColor: 'background.secondary', fontFamily: 'Nunito'}} label="Search for country..." id="searchCountries"
+        <Box sx={{marginTop: {xs: '10px', xl: '50px'}, backgroundColor: "background.default"}}> 
+            <TextField onChange={handleSearch} sx={{width: {xs: '100%', md: '280px', xl: '480px'}, "& fieldset": {border: 'none'}, backgroundColor: 'background.secondary', fontFamily: 'Nunito'}} label="Search for country..." id="searchCountries"
                 InputProps={{endAdornment: (<InputAdornment position="start"><SearchIcon /></InputAdornment>)}} 
                 margin="normal" 
             /> 
-            <FormControl variant="standard" sx={{ m: 1, minWidth: 200, float: 'right', marginBottom: '5px !important', backgroundColor: "background.secondary", color: "text.primary"}}>
+            <FormControl variant="standard" sx={{ m: 1, minWidth: 200, float: {xs: 'none', md: 'right', xl: 'right'}, marginTop: {xs: '40px', md: '10px', xl: '0px'}, marginBottom: '5px !important', backgroundColor: "background.secondary", color: "text.primary"}}>
                 <InputLabel sx={{color: "text.primary"}} id="demo-simple-select-standard-label">Filter by Region</InputLabel>  
                 <Select
                     labelId="demo-simple-select-standard-label"

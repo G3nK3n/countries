@@ -16,7 +16,7 @@ const CountriesLayout = (props: any) => {
 
 
     return(
-        <Box sx={{marginTop: '30px'}}>
+        <Box sx={{marginTop: '30px', textAlign: {xs: 'center', xl: 'unset'}}}>
             {filtered.map((country: any, index: number) => {   
                 return(
                     <Country key={index}

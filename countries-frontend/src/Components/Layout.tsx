@@ -36,8 +36,8 @@ const Layout = () => {
 
 
     return(
-        <Box>
-            <Box sx={{backgroundColor: 'background.secondary', top: 0}}> 
+        <Box sx={{width: '100%'}}>
+            <Box sx={{backgroundColor: 'background.secondary'}}> 
                 <Container maxWidth="xl">
                     <Header />
                 </Container>

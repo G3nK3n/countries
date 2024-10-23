@@ -20,7 +20,7 @@ const Country = (props: any) => {
     //while the 5th country on the row does not
     if((props.index + 1) % 5 !== 0) {
         return(
-            <Box sx={{width: '264px', height: '336px', display: 'inline-block', backgroundColor: 'background.secondary', marginRight: '40px', marginTop: '50px'}}> 
+            <Box sx={{width: '264px', height: '336px', display: 'inline-block', backgroundColor: 'background.secondary', marginRight: {sm: '12px', md:'20px' , xl: '40px'}, marginTop: '50px', textAlign: {xs: 'left'}}}> 
                 <Box sx={{width: '264px', height: '160px'}}>
                     <img style={imageWidthStyle} src={props.countryImage} />
                 </Box>
@@ -41,7 +41,7 @@ const Country = (props: any) => {
     }
     else {
         return(
-            <Box sx={{width: '264px', height: '336px', display: 'inline-block', backgroundColor: 'background.secondary', marginTop: '50px'}}> 
+            <Box sx={{width: '264px', height: '336px', display: 'inline-block', backgroundColor: 'background.secondary', marginTop: '50px', textAlign: {xs: 'left'}, marginRight: {sm: '12px', md:'20px' ,xl: '0px'}}}> 
                 <Box sx={{width: '264px', height: '160px'}}>
                     <img style={imageWidthStyle} src={props.countryImage} />
                 </Box>
